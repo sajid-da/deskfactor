@@ -19,7 +19,7 @@ FastAPI report API
   ├─ Pydantic schema + source excerpt validation
   ├─ deterministic missing/inconsistency/review checks
   ├─ local synthetic document-workflow classifier
-  └─ SQLAlchemy persistence → SQLite local / PostgreSQL Compose
+  └─ SQLAlchemy persistence → SQLite local / managed Render PostgreSQL (deployment blueprint)
           ↓
        report and history REST responses → frontend
 ```
@@ -47,4 +47,4 @@ Input is treated as untrusted. The backend owns secrets, validation, extraction,
 
 ## Deployment status
 
-Docker Compose describes a local PostgreSQL + FastAPI + Nginx/Vite deployment on `localhost:8080`. No public deployment has been configured or verified. The checked-in GitHub Actions workflow runs CI only; it does not deploy. Production requires hosted frontend/API/database, HTTPS, secrets, origin configuration, health checks, backups, and an end-to-end synthetic verification. SQLAlchemy `create_all` is used; schema migrations are not configured.
+The local Docker Compose topology remains. frontend/vercel.json configures SPA routing; render.yaml declares a free FastAPI service and a free managed PostgreSQL database in Singapore, with database-ready health checks and deploy-after-CI. These resources are not provisioned yet: provider sign-in, private OCR/Gemini secret entry, and the Vercel CORS origin are still required. No hosting payment is required. Render free web services sleep after 15 minutes without traffic; the free PostgreSQL database expires after 30 days and is deleted after its grace period. SQLAlchemy create_all initializes new databases; migrations are not configured. The API has no authentication or tenant isolation, so use synthetic records only.

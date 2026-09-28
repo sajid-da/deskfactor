@@ -84,3 +84,17 @@ PHASE_30 — administrative agreement extraction and report UI
 - Frontend Vitest: 4 passed; TypeScript and Vite production build passed. Focused deterministic backend extraction and source-grounding passed using the bundled Python/Pydantic runtime. Full pytest suite could not run in this environment because no available Python interpreter has pytest/FastAPI/SQLAlchemy installed.
 - Verified `assign/AI_ML_Internship_Technical_Assignment.docx` requirements by extracting its text; visual render was unavailable because LibreOffice is not installed. `assign/` is excluded from the public repository.
 - User-provided source is an administrative surgery payment agreement. Empty clinical categories are expected; amount/terms and agreement context now display in the administrative agreement section.
+
+
+PHASE_31 — production deployment audit and provider setup
+- Chosen topology: Vercel SPA + Render FastAPI + private free managed PostgreSQL in Singapore. Free Render service/database tiers were rejected for production history because web services sleep and free Postgres expires after 30 days.
+- Added psycopg v3 URL normalization, database-backed /health readiness, Vercel SPA routing, and a Render Blueprint with private DB access, server-side OCR/Gemini secrets, and deployment after CI. Frontend production builds require an HTTPS API origin and never fall back to localhost.
+- Backend Ruff clean; pytest 51 passed; classifier preparation, training, and extraction evaluation passed.
+- Credential scan: key-like content found only in ignored backend/.env; no matching values in tracked source. Do not commit the local env file.
+- No deployment is live: the Vercel dashboard requires account login; this environment has no Vercel/Render CLI or token. User sign-in, GitHub authorization, and private key entry remain necessary. No hosting payment is required for this demo configuration. No real patient data should be uploaded because the API has no authentication/tenant isolation.
+
+
+PHASE_32 - no-cost hosted demo preparation
+- Replaced the paid Render service plan with the free Render FastAPI and free 1 GB Postgres plans; deployment no longer requires accepting a hosting bill. Render free API sleeps after 15 minutes idle and free Postgres expires after 30 days.
+- Added a Vercel build guard that blocks a hosted build unless VITE_API_URL is set to an HTTPS backend URL; local builds remain unaffected. Added frontend/.env.example.
+- Updated README, architecture and technical decisions to match the no-cost topology and its limits. Provider account sign-in, repository authorization, and server-side OCR/Gemini secrets are still required; no public deployment is live.

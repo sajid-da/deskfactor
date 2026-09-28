@@ -57,7 +57,7 @@ See [architecture](docs/architecture.md), [AI/ML design](docs/ai-ml-design.md), 
 
 ## Local setup
 
-Requirements: Python 3.11+, Node.js 22+, and outbound network access for OCR.space/Gemini. The current hosted application is **not deployed**; there is no public frontend or API URL. Use the local URLs below.
+Requirements: Python 3.11+, Node.js 22+, and outbound network access for OCR.space/Gemini. The hosted application is not live yet. A free-tier Vercel + Render deployment blueprint is prepared, but provider sign-in and API/database configuration are still required.
 
 ### Backend
 
@@ -147,7 +147,23 @@ npm test -- --run
 npm run build
 ```
 
-The tests use synthetic data and mocked external-service responses; they do not prove provider uptime or natural handwriting accuracy. `.github/workflows/ci.yml` runs backend and frontend checks on pushes/PRs. Verify its hosted run after a GitHub push. **CD is not configured**: no deployment provider or production credentials are available, and the application has no public URL yet. For a real deployment, provision frontend hosting, FastAPI hosting, managed PostgreSQL, HTTPS, secrets, CORS, monitoring, backups, and verify the complete hosted workflow with synthetic input.
+The tests use synthetic data and mocked external-service responses; they do not prove provider uptime or natural handwriting accuracy. `.github/workflows/ci.yml` runs backend and frontend checks on pushes/PRs. Verify its hosted run after a GitHub push. CI is configured; hosting still requires provider account authorization and private provider secrets.
+
+## Hosted assignment deployment
+
+Free-tier topology: Vercel serves the React SPA; Render runs FastAPI and a 1 GB managed PostgreSQL database in Singapore. Vercel handles SPA deep links.
+
+### Provisioning steps
+
+1. Sign in to Render and connect the GitHub repo. Deploy the root render.yaml Blueprint. It creates a free FastAPI service and a free 1 GB PostgreSQL database. Enter OCR_SPACE_API_KEY, GEMINI_API_KEY, and CORS_ORIGINS in the protected setup form. Do not paste secrets into chat or commit them.
+2. In Vercel, import sajid-da/deskfactor and set Root Directory to frontend. Set VITE_API_URL to the HTTPS Render service origin. It is public, not a secret. A production build rejects a missing, non-HTTPS, or localhost API URL.
+3. Open the deployed frontend and verify /health, synthetic text submission, synthetic image/PDF OCR, structured report, ML output, and database persistence. Export any needed records before the free Render database expires after 30 days.
+
+This app currently has no authentication or tenant isolation. Use synthetic records only; do not upload real patient documents. SQLAlchemy create_all initializes a new schema; Alembic migrations and database restore verification are not configured.
+
+### Deployment status
+
+No service is provisioned yet. There is no Vercel/Render CLI or deployment token in this environment, and the Vercel dashboard redirects to login. Provider sign-in and GitHub authorization must happen in your accounts. Free hosting has no service charge, but Render API sleeps after 15 minutes idle and the managed PostgreSQL expires after 30 days. Add secrets only in protected provider settings. Do not send passwords, API keys, or database URLs in chat.
 
 ## Screenshots/examples
 

@@ -1,0 +1,37 @@
+# $0 demo stack. Render's free Postgres expires after 30 days; export data before expiry.
+services:
+  - type: web
+    name: deskfactor-clinical-reviewer-api
+    runtime: python
+    region: singapore
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: deskfactor-clinical-reviewer-db
+          property: connectionString
+      - key: MAX_UPLOAD_MB
+        value: "10"
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: GEMINI_FALLBACK_MODEL
+        value: gemini-3.6-flash
+      - key: CORS_ORIGINS
+        sync: false
+      - key: OCR_SPACE_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+
+databases:
+  - name: deskfactor-clinical-reviewer-db
+    databaseName: clinical_reviews
+    user: clinical
+    region: singapore
+    plan: free
+    ipAllowList: []

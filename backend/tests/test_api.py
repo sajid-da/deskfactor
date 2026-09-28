@@ -300,3 +300,17 @@ If this account is turned over to a collection agency, the undersigned agrees to
     assert "administrative agreement terms" in report["summary"]
     assert report["ml_prediction"] is not None
     assert payload["status"] == "needs_review"
+
+
+def test_postgres_connection_urls_use_installed_psycopg_driver():
+    from app.db.database import normalize_database_url
+
+    assert normalize_database_url("postgres://user:pass@db:5432/reports") == (
+        "postgresql+psycopg://user:pass@db:5432/reports"
+    )
+    assert normalize_database_url("postgresql://user:pass@db:5432/reports") == (
+        "postgresql+psycopg://user:pass@db:5432/reports"
+    )
+    assert normalize_database_url("postgresql+psycopg://user:pass@db:5432/reports") == (
+        "postgresql+psycopg://user:pass@db:5432/reports"
+    )

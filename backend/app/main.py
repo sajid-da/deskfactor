@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.requests import Request
 from fastapi.responses import JSONResponse
+from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.api.reports import router as reports_router
 from app.core.config import ALLOWED_ORIGINS
+from app.db.database import engine
 
 app = FastAPI(title="AI Clinical Document Reviewer", version="0.1.0")
 app.add_middleware(
@@ -26,4 +28,7 @@ async def database_error_handler(request: Request, exc: SQLAlchemyError) -> JSON
 
 @app.get("/health")
 def health() -> dict[str, str]:
+    """Report readiness only when the configured database accepts a query."""
+    with engine.connect() as connection:
+        connection.execute(text("SELECT 1"))
     return {"status": "ok"}

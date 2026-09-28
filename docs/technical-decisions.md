@@ -28,7 +28,7 @@
 
 ## Deployment and trade-offs
 
-Docker Compose provides local PostgreSQL, FastAPI, and Nginx frontend integration. No public hosting project/URL or deploy workflow is configured. CI runs tests/build only. To deploy, provision managed frontend/API/database services, secrets, HTTPS and CORS, persistent database/backup procedures, migrations, monitoring, and then exercise the full flow with synthetic files. Synchronous OCR/LLM calls can tie up workers; production should add job queues, cancellation, retries/idempotency, rate limits, and bounded concurrency.
+Docker Compose remains for local use. Vercel + Render deployment files are prepared but not provisioned. The free Render blueprint uses FastAPI and PostgreSQL in Singapore; the free API sleeps after 15 minutes without traffic, and its database expires after 30 days. No hosting payment is required for this demo. Provider sign-in, server-side OCR/Gemini secrets, and exact Vercel CORS origin remain setup steps. The API has no authentication/tenant isolation; hosted use is synthetic data only. SQLAlchemy create_all initializes a fresh schema; migrations, backups, monitoring, and clinical privacy controls are future work. Synchronous OCR/LLM calls can tie up workers; production should add job queues, cancellation, retries/idempotency, rate limits, and bounded concurrency.
 
 ## Known weaknesses and future improvements
 

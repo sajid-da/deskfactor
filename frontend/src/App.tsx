@@ -11,7 +11,7 @@ type Report = { id: string; created_at: string; input_type: string; filename: st
   analysis_provider?: string; analysis_model?: string | null; analysis_note?: string | null
 } | null; processing_error: string | null }
 type View = 'overview' | 'documents' | 'reports' | 'review'
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API = (import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')).replace(/\/$/, '')
 const pages: View[] = ['overview', 'documents', 'reports', 'review']
 const pageLabels: Record<View, string> = { overview: 'Overview', documents: 'Documents', reports: 'Reports', review: 'AI Review' }
 const reveal = revealVariants
