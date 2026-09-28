@@ -1,0 +1,13 @@
+text,label
+"Routine filing: this document is legible, complete, and has no follow-up flags.",routine
+Checklist passed for the record; all sections are consistent and present.,routine
+The packet can move through standard processing with no documentation issue.,routine
+A complete readable document was received for normal records processing.,routine
+Please inspect the document; its date fields conflict and a signature is missing.,review_required
+The record contains unreadable text and omitted sections needing manual verification.,review_required
+A blank field and duplicate attachment were found in the packet; request a correction.,review_required
+Manual records review needed: the document has an incomplete identifier.,review_required
+Priority workflow flag: the office requests immediate review of this document.,urgent_review
+Route the record to the designated urgent records queue per office procedure.,urgent_review
+This packet was marked for prompt administrative review; confirm routing.,urgent_review
+An explicit immediate handling request accompanies this document; use standard escalation steps.,urgent_review

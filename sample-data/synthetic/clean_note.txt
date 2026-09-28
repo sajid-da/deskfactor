@@ -1,0 +1,8 @@
+SYNTHETIC DEMO ONLY — NOT A REAL PATIENT
+
+Patient: Demo Subject A
+Age: 42
+Encounter date: 2026-09-01
+
+Reports fever and cough for two days. Temperature 101 F.
+Taking paracetamol 500 mg. No known allergies.

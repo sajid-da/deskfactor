@@ -1,0 +1,13 @@
+text,label
+"Standard processing is appropriate: the document is clear, complete, and internally consistent.",routine
+All checklist items are present in this readable record; no action is pending.,routine
+The records packet is complete and ready for routine filing.,routine
+No administrative flags; this document passed the quality review.,routine
+This document has conflicting identifiers and an unreadable section; verify manually.,review_required
+The records packet is incomplete because a required attachment is missing.,review_required
+A date mismatch was noted in the packet; hold for source comparison.,review_required
+Manual verification requested because the document has blank and duplicate fields.,review_required
+The cover page requests immediate administrative review of this document.,urgent_review
+An explicit priority routing label is present; forward this record per local procedure.,urgent_review
+The sending office requests prompt workflow handling for this packet.,urgent_review
+Marked urgent for records routing only; send this document to the designated queue.,urgent_review

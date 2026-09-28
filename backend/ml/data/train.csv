@@ -1,0 +1,19 @@
+text,label
+"The document is complete, legible, and ready for routine filing.",routine
+All required sections in this record are present and internally consistent.,routine
+This packet passed the documentation checklist with no follow-up requested.,routine
+The document is readable and complete for standard processing.,routine
+Required fields are filled in this record; route through the usual queue.,routine
+No document quality issues were found in the packet; standard workflow applies.,routine
+The document has a missing signature and needs a completeness check.,review_required
+Conflicting dates appear in this record; please verify the source.,review_required
+"Several fields are blank in this packet, so a manual documentation review is needed.",review_required
+The document is partly illegible and should be checked against the original.,review_required
+A duplicate page and an inconsistent identifier were found in this record.,review_required
+This packet is missing a required section; return it for document follow-up.,review_required
+This document carries a priority review routing marker; follow the organization's escalation workflow.,urgent_review
+The record is explicitly marked urgent for document handling; route to the designated queue.,urgent_review
+An immediate records review was requested for this packet by the submitting office.,urgent_review
+Priority handling is requested on the cover sheet of this document; use the approved routing process.,urgent_review
+This record has an urgent administrative review flag; confirm receipt promptly.,urgent_review
+"The submitting office marked this packet for immediate workflow review, not clinical triage.",urgent_review

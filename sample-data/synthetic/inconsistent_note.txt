@@ -1,0 +1,6 @@
+SYNTHETIC DEMO ONLY — NOT A REAL PATIENT
+
+Patient: Demo Subject B
+Age: 42
+History section lists age 47.
+Reports headache. No known allergies.
